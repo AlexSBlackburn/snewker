@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Dtos\Player;
 use App\Factories\PlayerFactory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -10,9 +9,7 @@ use Illuminate\Support\Facades\Http;
 
 final readonly class FavouritePlayerService
 {
-    public function __construct(private PlayerFactory $playerFactory)
-    {
-    }
+    public function __construct(private PlayerFactory $playerFactory) {}
 
     public function favouritePlayers(Collection $playerIds): void
     {

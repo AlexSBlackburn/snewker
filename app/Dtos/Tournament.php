@@ -10,7 +10,5 @@ final readonly class Tournament
         public string $name,
         public string $location,
         public Collection $matches,
-    )
-    {
-    }
+    ) {}
 }

@@ -43,9 +43,9 @@ class RankingsCommand extends Command
         table(
             headers: ['Rank', 'Player'],
             rows: $topPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName])
-                ->merge([new TableSeparator()])
+                ->merge([new TableSeparator])
                 ->merge($tourCardPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName]))
-                ->merge([new TableSeparator()])
+                ->merge([new TableSeparator])
                 ->merge($remainingPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName]))
                 ->toArray()
         );
