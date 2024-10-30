@@ -12,7 +12,9 @@ final readonly class TournamentFactory
 {
     public function createTournamentFromResponse(Response $response): Tournament
     {
-        $matches = $response->collect('data.attributes.matches')->map(function (array $match) {
+        $tournament = $response->json('data.attributes');
+
+        $matches = collect($tournament['matches'])->map(function (array $match) {
             $playerOne = new MatchPlayer(
                 id: $match['homePlayer']['playerID'],
                 name: $match['homePlayer']['firstName'] . ' ' . $match['homePlayer']['surname'],
@@ -43,7 +45,8 @@ final readonly class TournamentFactory
         $scheduledMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === 'Scheduled')->take(5);
 
         return new Tournament(
-            name: $response->json('data.attributes.name'),
+            name: $tournament['name'],
+            location: $tournament['city'] . ', ' . $tournament['country'],
             matches: $completedMatches->merge($liveMatches)->merge($scheduledMatches)->groupBy('round'),
         );
     }
