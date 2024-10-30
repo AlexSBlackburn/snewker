@@ -16,7 +16,5 @@ final readonly class SnookerMatch
         public int $frames,
         public MatchPlayer $playerOne,
         public MatchPlayer $playerTwo,
-    )
-    {
-    }
+    ) {}
 }

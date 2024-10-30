@@ -10,7 +10,5 @@ final class MatchPlayer
         public string $nationality,
         public int $score = 0,
         public int $frames = 0,
-    )
-    {
-    }
+    ) {}
 }

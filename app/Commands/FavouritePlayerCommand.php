@@ -6,6 +6,7 @@ use App\Dtos\Player;
 use App\Services\FavouritePlayerService;
 use Illuminate\Support\Facades\DB;
 use LaravelZero\Framework\Commands\Command;
+
 use function Laravel\Prompts\multiselect;
 
 class FavouritePlayerCommand extends Command
