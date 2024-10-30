@@ -8,13 +8,11 @@ use Illuminate\Support\Facades\Http;
 
 final readonly class MatchService
 {
-    public function __construct(private MatchFactory $matchFactory)
-    {
-    }
+    public function __construct(private MatchFactory $matchFactory) {}
 
     public function getMatch(string $id): SnookerMatch
     {
-        $response = Http::get('https://matches.snooker.web.gc.wstservices.co.uk/v2/' . $id);
+        $response = Http::get('https://matches.snooker.web.gc.wstservices.co.uk/v2/'.$id);
 
         return $this->matchFactory->createMatchFromResponse($response);
     }

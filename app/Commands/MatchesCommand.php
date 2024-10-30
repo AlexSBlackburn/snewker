@@ -44,13 +44,13 @@ class MatchesCommand extends Command
         $this->info($tournament->location);
         $this->newLine();
 
-        $tournament->matches->each(function (Collection $matches, string $round) use ($matchService, $notificationService) {
+        $tournament->matches->each(function (Collection $matches, string $round) use ($matchService) {
             $this->info($round);
             $this->newLine();
 
             table(
                 headers: ['Start', 'Player One', 'Points', 'Frames', 'Points', 'Player Two'],
-                rows: $matches->map(function (SnookerMatch $match) use ($matchService, $notificationService) {
+                rows: $matches->map(function (SnookerMatch $match) use ($matchService) {
                     $status = $match->status === 'Scheduled' ? $match->start->diffForHumans() : $match->status;
 
                     if ($status === 'Live') {
@@ -60,11 +60,11 @@ class MatchesCommand extends Command
 
                     return [
                         $status,
-                        $match->playerOne->name . ' (' . $match->playerOne->nationality . ')',
+                        $match->playerOne->name.' ('.$match->playerOne->nationality.')',
                         $match->playerOne->score,
-                        $match->playerOne->frames . ' (' . $match->frames . ') ' . $match->playerTwo->frames,
+                        $match->playerOne->frames.' ('.$match->frames.') '.$match->playerTwo->frames,
                         $match->playerTwo->score,
-                        $match->playerTwo->name . ' (' . $match->playerTwo->nationality . ')',
+                        $match->playerTwo->name.' ('.$match->playerTwo->nationality.')',
                     ];
                 })->toArray()
             );
@@ -84,6 +84,6 @@ class MatchesCommand extends Command
         });
 
         $this->newLine();
-        $this->info('Last fetched: ' . now()->timezone('Europe/Amsterdam')->format('H:i:s'));
+        $this->info('Last fetched: '.now()->timezone('Europe/Amsterdam')->format('H:i:s'));
     }
 }

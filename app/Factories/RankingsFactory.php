@@ -15,7 +15,7 @@ final readonly class RankingsFactory
             ->map(function (array $ranking) {
                 return new Ranking(
                     position: $ranking['position'],
-                    playerName: $ranking['player']['firstName'] . ' ' . $ranking['player']['surname'],
+                    playerName: $ranking['player']['firstName'].' '.$ranking['player']['surname'],
                 );
             })
             ->sortBy('position');

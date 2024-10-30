@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class RankingsService
 {
-    public function __construct(private RankingsFactory $rankingsFactory)
-    {
-    }
+    public function __construct(private RankingsFactory $rankingsFactory) {}
 
     public function getRankings(): Rankings
     {

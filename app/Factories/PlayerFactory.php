@@ -14,7 +14,7 @@ final readonly class PlayerFactory
             ->map(function (array $player) {
                 return new Player(
                     id: $player['id'],
-                    name: $player['attributes']['firstName'] . ' ' . $player['attributes']['surname'],
+                    name: $player['attributes']['firstName'].' '.$player['attributes']['surname'],
                 );
             })
             ->sortBy('name');

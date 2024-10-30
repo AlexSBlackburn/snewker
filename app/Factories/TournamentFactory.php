@@ -17,13 +17,13 @@ final readonly class TournamentFactory
         $matches = collect($tournament['matches'])->map(function (array $match) {
             $playerOne = new MatchPlayer(
                 id: $match['homePlayer']['playerID'],
-                name: $match['homePlayer']['firstName'] . ' ' . $match['homePlayer']['surname'],
+                name: $match['homePlayer']['firstName'].' '.$match['homePlayer']['surname'],
                 nationality: $match['homePlayer']['country'],
                 frames: $match['homePlayerScore'],
             );
             $playerTwo = new MatchPlayer(
                 id: $match['awayPlayer']['playerID'],
-                name: $match['awayPlayer']['firstName'] . ' ' . $match['awayPlayer']['surname'],
+                name: $match['awayPlayer']['firstName'].' '.$match['awayPlayer']['surname'],
                 nationality: $match['awayPlayer']['country'],
                 frames: $match['awayPlayerScore'],
             );
@@ -46,7 +46,7 @@ final readonly class TournamentFactory
 
         return new Tournament(
             name: $tournament['name'],
-            location: $tournament['city'] . ', ' . $tournament['country'],
+            location: $tournament['city'].', '.$tournament['country'],
             matches: $completedMatches->merge($liveMatches)->merge($scheduledMatches)->groupBy('round'),
         );
     }

@@ -9,7 +9,5 @@ class Rankings
     public function __construct(
         public string $title,
         public Collection $players,
-    )
-    {
-    }
+    ) {}
 }

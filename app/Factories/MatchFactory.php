@@ -2,8 +2,8 @@
 
 namespace App\Factories;
 
-use App\Dtos\SnookerMatch;
 use App\Dtos\MatchPlayer;
+use App\Dtos\SnookerMatch;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
 
@@ -16,13 +16,13 @@ final readonly class MatchFactory
 
         $playerOne = new MatchPlayer(
             id: $attributes['homePlayer']['playerID'],
-            name: $attributes['homePlayer']['firstName'] . ' ' . $attributes['homePlayer']['surname'],
+            name: $attributes['homePlayer']['firstName'].' '.$attributes['homePlayer']['surname'],
             nationality: $attributes['homePlayer']['country'],
             frames: $attributes['homePlayerScore'],
         );
         $playerTwo = new MatchPlayer(
             id: $attributes['awayPlayer']['playerID'],
-            name: $attributes['awayPlayer']['firstName'] . ' ' . $attributes['awayPlayer']['surname'],
+            name: $attributes['awayPlayer']['firstName'].' '.$attributes['awayPlayer']['surname'],
             nationality: $attributes['awayPlayer']['country'],
             frames: $attributes['awayPlayerScore'],
         );
