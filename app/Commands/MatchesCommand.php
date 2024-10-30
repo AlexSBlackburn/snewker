@@ -41,6 +41,8 @@ class MatchesCommand extends Command
 
         $this->info($tournament->name);
         $this->newLine();
+        $this->info($tournament->location);
+        $this->newLine();
 
         $tournament->matches->each(function (Collection $matches, string $round) use ($matchService, $notificationService) {
             $this->info($round);
