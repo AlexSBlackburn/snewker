@@ -32,12 +32,17 @@ class MatchesCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(TournamentService $tournamentService, MatchService $matchService, NotificationService $notificationService): void
+    public function handle(TournamentService $tournamentService, MatchService $matchService, NotificationService $notificationService): int
     {
         clear();
         $this->newLine(2);
 
-        $tournament = spin(message: 'Fetching matches...', callback: fn () => $tournamentService->getTournament());
+        try {
+            $tournament = spin(message: 'Fetching matches...', callback: fn () => $tournamentService->getTournament());
+        } catch (\Exception $e) {
+            $this->info($e->getMessage());
+            return Command::FAILURE;
+        }
 
         $this->info($tournament->name);
         $this->newLine();
@@ -73,17 +78,17 @@ class MatchesCommand extends Command
         $tournament->matches->each(function (Collection $matches) use ($notificationService) {
             $matches->each(function (SnookerMatch $match) use ($notificationService) {
                 if ($notificationService->shouldNotifyAboutFavouritePlayer($match->playerOne, $match)) {
-                    $message = $notificationService->getFavouritePlayerNotification($match->playerOne, $match);
-                    $this->notify('Snewker', $message);
+                    $this->notify('Snewker', $notificationService->getFavouritePlayerNotification($match->playerOne, $match));
                 }
                 if ($notificationService->shouldNotifyAboutFavouritePlayer($match->playerTwo, $match)) {
-                    $message = $notificationService->getFavouritePlayerNotification($match->playerTwo, $match);
-                    $this->notify('Snewker', $message);
+                    $this->notify('Snewker', $notificationService->getFavouritePlayerNotification($match->playerTwo, $match));
                 }
             });
         });
 
         $this->newLine();
         $this->info('Last fetched: '.now()->timezone('Europe/Amsterdam')->format('H:i:s'));
+
+        return Command::SUCCESS;
     }
 }
