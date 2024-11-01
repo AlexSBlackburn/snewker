@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Dtos\Tournament;
 use App\Factories\TournamentFactory;
 use Illuminate\Support\Facades\Http;
 
@@ -9,14 +10,14 @@ final readonly class TournamentService
 {
     public function __construct(private TournamentFactory $tournamentFactory) {}
 
-    public function getCurrentTournament()
+    public function getCurrentTournament(): string
     {
-        return Http::get('https://tournaments.snooker.web.gc.wstservices.co.uk/v2/current')->json('data.id');
+        return Http::wst('tournaments')->get('/current')->json('data.id');
     }
 
-    public function getTournament()
+    public function getTournament(): Tournament
     {
-        $response = Http::get('https://tournaments.snooker.web.gc.wstservices.co.uk/v2/'.$this->getCurrentTournament());
+        $response = Http::wst('tournaments')->get('/'.$this->getCurrentTournament());
 
         return $this->tournamentFactory->createTournamentFromResponse($response);
     }
