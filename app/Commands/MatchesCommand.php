@@ -34,61 +34,62 @@ class MatchesCommand extends Command
      */
     public function handle(TournamentService $tournamentService, MatchService $matchService, NotificationService $notificationService): int
     {
-        clear();
-        $this->newLine(2);
+        while (true) {
+            clear();
+            $this->newLine(2);
 
-        try {
-            $tournament = spin(message: 'Fetching matches...', callback: fn () => $tournamentService->getTournament());
-        } catch (\Exception $e) {
-            $this->info($e->getMessage());
-            return Command::FAILURE;
-        }
+            try {
+                $tournament = spin(message: 'Fetching matches...', callback: fn() => $tournamentService->getTournament());
+            } catch (\Exception $e) {
+                $this->info($e->getMessage());
+                return Command::FAILURE;
+            }
 
-        $this->info($tournament->name);
-        $this->newLine();
-        $this->info($tournament->location);
-        $this->newLine();
-
-        $tournament->matches->each(function (Collection $matches, string $round) use ($matchService) {
-            $this->info($round);
+            $this->info($tournament->name);
+            $this->newLine();
+            $this->info($tournament->location);
             $this->newLine();
 
-            table(
-                headers: ['Start', 'Player One', 'Points', 'Frames', 'Points', 'Player Two'],
-                rows: $matches->map(function (SnookerMatch $match) use ($matchService) {
-                    $status = $match->status === 'Scheduled' ? $match->start->diffForHumans() : $match->status;
+            $tournament->matches->each(function (Collection $matches, string $round) use ($matchService) {
+                $this->info($round);
+                $this->newLine();
 
-                    if ($status === 'Live') {
-                        // Get points for live matches
-                        $match = $matchService->getMatch($match->id);
-                    }
+                table(
+                    headers: ['Start', 'Player One', 'Points', 'Frames', 'Points', 'Player Two'],
+                    rows: $matches->map(function (SnookerMatch $match) use ($matchService) {
+                        $status = $match->status === 'Scheduled' ? $match->start->diffForHumans() : $match->status;
 
-                    return [
-                        $status,
-                        $match->playerOne->name.' ('.$match->playerOne->nationality.')',
-                        $match->playerOne->score,
-                        $match->playerOne->frames.' ('.$match->frames.') '.$match->playerTwo->frames,
-                        $match->playerTwo->score,
-                        $match->playerTwo->name.' ('.$match->playerTwo->nationality.')',
-                    ];
-                })->toArray()
-            );
-        });
+                        if ($status === 'Live') {
+                            // Get points for live matches
+                            $match = $matchService->getMatch($match->id);
+                        }
 
-        $tournament->matches->each(function (Collection $matches) use ($notificationService) {
-            $matches->each(function (SnookerMatch $match) use ($notificationService) {
-                if ($notificationService->shouldNotifyAboutFavouritePlayer($match->playerOne, $match)) {
-                    $this->notify('Snewker', $notificationService->getFavouritePlayerNotification($match->playerOne, $match));
-                }
-                if ($notificationService->shouldNotifyAboutFavouritePlayer($match->playerTwo, $match)) {
-                    $this->notify('Snewker', $notificationService->getFavouritePlayerNotification($match->playerTwo, $match));
-                }
+                        return [
+                            $status,
+                            $match->playerOne->name . ' (' . $match->playerOne->nationality . ')',
+                            $match->playerOne->score,
+                            $match->playerOne->frames . ' (' . $match->frames . ') ' . $match->playerTwo->frames,
+                            $match->playerTwo->score,
+                            $match->playerTwo->name . ' (' . $match->playerTwo->nationality . ')',
+                        ];
+                    })->toArray()
+                );
             });
-        });
 
-        $this->newLine();
-        $this->info('Last fetched: '.now()->timezone('Europe/Amsterdam')->format('H:i:s'));
+            $tournament->matches->each(function (Collection $matches) use ($notificationService) {
+                $matches->each(function (SnookerMatch $match) use ($notificationService) {
+                    if ($notificationService->shouldNotifyAboutFavouritePlayer($match->playerOne, $match)) {
+                        $this->notify('Snewker', $notificationService->getFavouritePlayerNotification($match->playerOne, $match));
+                    }
+                    if ($notificationService->shouldNotifyAboutFavouritePlayer($match->playerTwo, $match)) {
+                        $this->notify('Snewker', $notificationService->getFavouritePlayerNotification($match->playerTwo, $match));
+                    }
+                });
+            });
 
-        return Command::SUCCESS;
+            $this->newLine();
+            $this->info('Last fetched: ' . now()->timezone('Europe/Amsterdam')->format('H:i:s'));
+            sleep(60);
+        }
     }
 }
