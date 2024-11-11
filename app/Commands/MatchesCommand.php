@@ -47,6 +47,8 @@ class MatchesCommand extends Command
 
             $this->info($tournament->name);
             $this->newLine();
+            $this->info($tournament->startDate->format('D d M Y') . ' - ' . $tournament->endDate->format('D d M Y'));
+            $this->newLine();
             $this->info($tournament->location);
             $this->newLine();
 

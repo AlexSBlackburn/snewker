@@ -15,7 +15,7 @@ final readonly class TournamentFactory
         $tournament = $response->json('data.attributes');
 
         $matches = collect($tournament['matches'])->map(function (array $match) {
-            if ($match['homePlayer'] === null) {
+            if (!$match['playersAllocated']) {
                 return false;
             }
 
@@ -50,6 +50,8 @@ final readonly class TournamentFactory
 
         return new Tournament(
             name: $tournament['name'],
+            startDate: Carbon::parse($tournament['startDate']),
+            endDate: Carbon::parse($tournament['endDate']),
             location: $tournament['city'].', '.$tournament['country'],
             matches: $completedMatches->merge($liveMatches)->merge($scheduledMatches)->groupBy('round'),
         );

@@ -12,13 +12,21 @@ final readonly class RankingsFactory
     {
         $players = $response
             ->collect('data.0.attributes.positions')
-            ->map(function (array $ranking) {
+            ->transform(function (array $ranking) {
                 return new Ranking(
-                    position: $ranking['position'],
                     playerName: $ranking['player']['firstName'].' '.$ranking['player']['surname'],
+                    position: $ranking['position'],
+                    points: $ranking['prizeMoney'],
                 );
             })
             ->sortBy('position');
+
+        $players->transform(function (Ranking $ranking, int $key) use ($players) {
+            $previous = $players->get($key - 1);
+            $ranking->difference = $previous ? $ranking->points - $previous->points : 0;
+
+            return $ranking;
+        });
 
         return new Rankings(
             title: $response->json('data.0.attributes.recalculateAfter'),
