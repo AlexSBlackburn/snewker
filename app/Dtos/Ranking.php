@@ -2,10 +2,12 @@
 
 namespace App\Dtos;
 
-final readonly class Ranking
+final class Ranking
 {
     public function __construct(
-        public int $position,
-        public string $playerName,
+        public readonly string $playerName,
+        public readonly int $position,
+        public readonly int $points,
+        public int $difference = 0,
     ) {}
 }

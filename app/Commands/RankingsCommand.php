@@ -41,12 +41,12 @@ class RankingsCommand extends Command
         $remainingPlayers = $rankings->players->slice(64);
 
         table(
-            headers: ['Rank', 'Player'],
-            rows: $topPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName])
+            headers: ['Rank', 'Player', 'Points', 'Difference'],
+            rows: $topPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName, $ranking->points, $ranking->difference])
                 ->merge([new TableSeparator])
-                ->merge($tourCardPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName]))
+                ->merge($tourCardPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName, $ranking->points, $ranking->difference]))
                 ->merge([new TableSeparator])
-                ->merge($remainingPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName]))
+                ->merge($remainingPlayers->map(fn (Ranking $ranking) => [$ranking->position, $ranking->playerName, $ranking->points, $ranking->difference]))
                 ->toArray()
         );
     }
