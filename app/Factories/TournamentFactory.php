@@ -15,6 +15,10 @@ final readonly class TournamentFactory
         $tournament = $response->json('data.attributes');
 
         $matches = collect($tournament['matches'])->map(function (array $match) {
+            if ($match['homePlayer'] === null) {
+                return false;
+            }
+
             $playerOne = new MatchPlayer(
                 id: $match['homePlayer']['playerID'],
                 name: $match['homePlayer']['firstName'].' '.$match['homePlayer']['surname'],
@@ -39,7 +43,7 @@ final readonly class TournamentFactory
                 playerOne: $playerOne,
                 playerTwo: $playerTwo,
             );
-        });
+        })->filter();
         $completedMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === 'Completed')->reverse()->take(5);
         $liveMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === 'Live');
         $scheduledMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === 'Scheduled')->take(5);
