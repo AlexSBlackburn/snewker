@@ -5,6 +5,7 @@ namespace App\Factories;
 use App\Dtos\MatchPlayer;
 use App\Dtos\SnookerMatch;
 use App\Dtos\Tournament;
+use App\Enums\MatchStatus;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
 
@@ -37,23 +38,34 @@ final readonly class TournamentFactory
                 tournament: $match['name'],
                 name: $match['name'],
                 round: $match['round'],
-                status: $match['status'],
+                status: MatchStatus::from($match['status']),
                 start: Carbon::parse($match['startDateTime']),
                 frames: $match['numberOfFrames'],
                 playerOne: $playerOne,
                 playerTwo: $playerTwo,
             );
         })->filter();
-        $completedMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === 'Completed')->reverse()->take(5);
-        $liveMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === 'Live');
-        $scheduledMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === 'Scheduled')->take(5);
+
+        $completedMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === MatchStatus::COMPLETED)->reverse()->take(5);
+        $liveMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === MatchStatus::LIVE);
+        $suspendedMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === MatchStatus::SUSPENDED);
+        $scheduledMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === MatchStatus::SCHEDULED)->take(5);
+
+        $matches = $completedMatches->merge($liveMatches)->merge($suspendedMatches)->merge($scheduledMatches)->groupBy('round');
+        $finalMatches = $matches['Final'] ?? collect();
+        $semiFinalMatches = $matches['Semi-final'] ?? collect();
+        $quarterFinalMatches = $matches['Quarter-final'] ?? collect();
+        unset($matches['Final']);
+        unset($matches['Semi-final']);
+        unset($matches['Quarter-final']);
+        $matches = $matches->merge($quarterFinalMatches)->merge($semiFinalMatches)->merge($finalMatches);
 
         return new Tournament(
             name: $tournament['name'],
             startDate: Carbon::parse($tournament['startDate']),
             endDate: Carbon::parse($tournament['endDate']),
             location: $tournament['city'].', '.$tournament['country'],
-            matches: $completedMatches->merge($liveMatches)->merge($scheduledMatches)->groupBy('round'),
+            matches: $matches,
         );
     }
 }

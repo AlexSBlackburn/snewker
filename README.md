@@ -15,3 +15,7 @@ Clone this repository and run:
 `php snewker favourite-players` - Add players to your favourites to get desktop notifications when they're playing and when a match ends.  
 
 The matches command will fetch the latest matches every minute until cancelled.
+
+
+## To do
+- Fix order of rounds (Round 1, Round 2, Quarter Finals, Semi Finals, Final).
