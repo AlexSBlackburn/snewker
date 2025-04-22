@@ -4,6 +4,7 @@ namespace App\Factories;
 
 use App\Dtos\MatchPlayer;
 use App\Dtos\SnookerMatch;
+use App\Enums\MatchStatus;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
 
@@ -41,7 +42,7 @@ final readonly class MatchFactory
             tournament: $attributes['tournament']['name'],
             name: $attributes['name'],
             round: $attributes['round'],
-            status: $attributes['status'],
+            status: MatchStatus::from($attributes['status']),
             start: new Carbon($attributes['startDateTime']),
             frames: $attributes['numberOfFrames'],
             playerOne: $playerOne,

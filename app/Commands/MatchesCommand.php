@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use App\Dtos\SnookerMatch;
+use App\Enums\MatchStatus;
 use App\Services\MatchService;
 use App\Services\NotificationService;
 use App\Services\TournamentService;
@@ -59,9 +60,9 @@ class MatchesCommand extends Command
                 table(
                     headers: ['Start', 'Player One', 'Points', 'Frames', 'Points', 'Player Two'],
                     rows: $matches->map(function (SnookerMatch $match) use ($matchService) {
-                        $status = $match->status === 'Scheduled' ? $match->start->diffForHumans() : $match->status;
+                        $status = in_array($match->status, [MatchStatus::SCHEDULED, MatchStatus::SUSPENDED]) ? $match->start->diffForHumans() : $match->status->value;
 
-                        if ($status === 'Live') {
+                        if ($status === MatchStatus::LIVE->value) {
                             // Get points for live matches
                             $match = $matchService->getMatch($match->id);
                         }
