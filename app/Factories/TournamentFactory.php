@@ -8,6 +8,7 @@ use App\Dtos\Tournament;
 use App\Enums\MatchStatus;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 final readonly class TournamentFactory
 {
@@ -51,14 +52,22 @@ final readonly class TournamentFactory
         $suspendedMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === MatchStatus::SUSPENDED);
         $scheduledMatches = $matches->filter(fn (SnookerMatch $match) => $match->status === MatchStatus::SCHEDULED)->take(5);
 
-        $matches = $completedMatches->merge($liveMatches)->merge($suspendedMatches)->merge($scheduledMatches)->groupBy('round');
-        $finalMatches = $matches['Final'] ?? collect();
-        $semiFinalMatches = $matches['Semi-final'] ?? collect();
-        $quarterFinalMatches = $matches['Quarter-final'] ?? collect();
-        unset($matches['Final']);
-        unset($matches['Semi-final']);
-        unset($matches['Quarter-final']);
-        $matches = $matches->merge($quarterFinalMatches)->merge($semiFinalMatches)->merge($finalMatches);
+        $matches = $completedMatches
+            ->merge($liveMatches)
+            ->merge($suspendedMatches)
+            ->merge($scheduledMatches)
+            ->sortBy([
+                    ['start', 'asc'],
+                    function (SnookerMatch $match) {
+                        return match ($match->round) {
+                            'Final' => 100,
+                            'Semi-final' => 90,
+                            'Quarter-final' => 80,
+                            default => Str::substr($match->round, -1),
+                        };
+                    }
+            ])
+            ->groupBy('round');
 
         return new Tournament(
             name: $tournament['name'],
