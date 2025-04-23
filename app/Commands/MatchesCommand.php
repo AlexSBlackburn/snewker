@@ -11,6 +11,7 @@ use App\Services\NotificationService;
 use App\Services\TournamentService;
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Sleep;
 use LaravelZero\Framework\Commands\Command;
 
 use function Laravel\Prompts\clear;
@@ -96,7 +97,14 @@ final class MatchesCommand extends Command
 
             $this->newLine();
             $this->info('Last fetched: '.now()->timezone('Europe/Amsterdam')->format('H:i:s'));
-            sleep(60);
+
+            if (app()->environment('testing')) {
+                break;
+            }
+
+            Sleep::for(60)->seconds();
         }
+
+        return Command::SUCCESS;
     }
 }

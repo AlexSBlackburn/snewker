@@ -1,0 +1,27 @@
+{
+    "data": {
+        "type": "tournament",
+        "id": "de7dda21-f1be-4073-a726-72e2167a0bea",
+        "attributes": {
+            "name": "Halo World Championship 2025",
+            "season": 2024,
+            "startDate": "2025-04-19",
+            "endDate": "2025-05-05",
+            "customStartDate": null,
+            "customEndDate": null,
+            "venue": null,
+            "city": "Sheffield",
+            "country": "England",
+            "continent": "Europe",
+            "ticketingLink": "/tickets/world-championship-2025-tickets",
+            "tournamentListingImage": "e09873f0-0995-11f0-8d7d-159f9d4bf08d.png",
+            "winner": null,
+            "tournamentLogo": null,
+            "tournamentLogoDark": null,
+            "tournamentBackgroundOverride": null,
+            "informationPage": "/worldchampionship",
+            "published": true,
+            "drawContentType": "json"
+        }
+    }
+}

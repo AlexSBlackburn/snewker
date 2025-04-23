@@ -24,8 +24,6 @@ final readonly class FavouritePlayerService
 
     public function getAllPlayers(): Collection
     {
-        $response = Http::get('https://players.snooker.web.gc.wstservices.co.uk/v2');
-
-        return $this->playerFactory->createPlayersFromResponse($response);
+        return $this->playerFactory->createPlayersFromResponse(Http::wst('players')->get());
     }
 }
