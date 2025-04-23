@@ -14,7 +14,7 @@ final readonly class MatchService
 
     public function getMatch(string $id): SnookerMatch
     {
-        $response = Http::get('https://matches.snooker.web.gc.wstservices.co.uk/v2/'.$id);
+        $response = Http::wst('matches')->get('/'.$id);
 
         return $this->matchFactory->createMatchFromResponse($response);
     }

@@ -63,8 +63,8 @@ final readonly class TournamentFactory
                 function (SnookerMatch $match) {
                     return match ($match->round) {
                         'Final' => 100,
-                        'Semi-final' => 90,
-                        'Quarter-final' => 80,
+                        'Semi Finals' => 90,
+                        'Quarter Finals' => 80,
                         default => Str::substr($match->round, -1),
                     };
                 },
