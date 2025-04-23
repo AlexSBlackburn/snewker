@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Dtos;
 
 use Illuminate\Support\Collection;
 
-class Rankings
+final class Rankings
 {
     public function __construct(
         public string $title,

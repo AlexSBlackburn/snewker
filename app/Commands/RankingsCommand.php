@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
 use App\Dtos\Ranking;
@@ -10,7 +12,7 @@ use Symfony\Component\Console\Helper\TableSeparator;
 use function Laravel\Prompts\spin;
 use function Laravel\Prompts\table;
 
-class RankingsCommand extends Command
+final class RankingsCommand extends Command
 {
     /**
      * The name and signature of the console command.
