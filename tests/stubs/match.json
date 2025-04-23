@@ -1,0 +1,289 @@
+{
+    "data": {
+        "type": "match",
+        "id": "b2e38dfe-9eb7-488e-9022-1ca98f27536c",
+        "attributes": {
+            "matchID": "b2e38dfe-9eb7-488e-9022-1ca98f27536c",
+            "name": "Zhang Anda vs Pang Junxu",
+            "homePlayerID": "0512f55a-faea-48df-a8fc-895fbcaef511",
+            "homePlayerScore": 5,
+            "awayPlayerID": "9c842985-9f09-4bd0-aa6a-dafe523b40ee",
+            "awayPlayerScore": 4,
+            "tournamentID": "de7dda21-f1be-4073-a726-72e2167a0bea",
+            "startDateTime": "2025-04-23 09:00:00",
+            "round": "Round 1",
+            "status": "Live",
+            "statusMeta": "MID_SESSION_INTERVAL",
+            "numberOfFrames": 19,
+            "fixtureNumber": 6,
+            "unallocatedHomePlayerFixtureNumber": null,
+            "unallocatedAwayPlayerFixtureNumber": null,
+            "playersAllocated": true,
+            "featured": null,
+            "published": true,
+            "homePlayer": {
+                "playerID": "0512f55a-faea-48df-a8fc-895fbcaef511",
+                "firstName": "Zhang",
+                "customFirstName": null,
+                "middleName": null,
+                "surname": "Anda",
+                "customSurname": null,
+                "nickname": null,
+                "customNickname": null,
+                "playerSlug": "zhang-anda",
+                "dob": "1991-12-25",
+                "customDob": null,
+                "country": "CHN",
+                "countryCode": "CN",
+                "height": null,
+                "weight": null,
+                "turnedPro": 2009,
+                "customTurnedPro": 2009,
+                "published": true,
+                "media": {
+                    "playerID": "0512f55a-faea-48df-a8fc-895fbcaef511",
+                    "profile": "2ebd6960-a64a-11ee-b1b0-0d0f4d1fa8a7.png",
+                    "appProfile": null,
+                    "leftSide": "2ebd6960-a64a-11ee-b1b0-0d0f4d1fa8a7.png",
+                    "rightSide": "97bb2760-aa4e-11ee-9d07-13db13fbf778.png",
+                    "movingProfile": null
+                },
+                "seasonStats": [
+                    {
+                        "playerID": "0512f55a-faea-48df-a8fc-895fbcaef511",
+                        "season": 2024,
+                        "ranking": 12,
+                        "matchesPlayed": 37,
+                        "matchesWon": 20,
+                        "tournamentsWon": 0,
+                        "pointsScored": 14118,
+                        "avgShotTime": 27.7,
+                        "fiftyPlusBreaks": 69,
+                        "hundredPlusBreaks": 21,
+                        "maxBreaks": 1,
+                        "highestBreak": 147
+                    },
+                    {
+                        "playerID": "0512f55a-faea-48df-a8fc-895fbcaef511",
+                        "season": 2023,
+                        "ranking": 12,
+                        "matchesPlayed": 52,
+                        "matchesWon": 33,
+                        "tournamentsWon": 1,
+                        "pointsScored": 23000,
+                        "avgShotTime": 30.7,
+                        "fiftyPlusBreaks": 129,
+                        "hundredPlusBreaks": 29,
+                        "maxBreaks": 1,
+                        "highestBreak": 147
+                    }
+                ]
+            },
+            "awayPlayer": {
+                "playerID": "9c842985-9f09-4bd0-aa6a-dafe523b40ee",
+                "firstName": "Pang",
+                "customFirstName": null,
+                "middleName": null,
+                "surname": "Junxu",
+                "customSurname": null,
+                "nickname": null,
+                "customNickname": null,
+                "playerSlug": "pang-junxu",
+                "dob": "2000-02-15",
+                "customDob": null,
+                "country": "CHN",
+                "countryCode": "CN",
+                "height": null,
+                "weight": null,
+                "turnedPro": 2020,
+                "customTurnedPro": 2020,
+                "published": true,
+                "media": {
+                    "playerID": "9c842985-9f09-4bd0-aa6a-dafe523b40ee",
+                    "profile": "f393b130-9b47-11ee-a4af-d7e956654f38.png",
+                    "appProfile": null,
+                    "leftSide": "f2f28f30-9b47-11ee-a4af-d7e956654f38.png",
+                    "rightSide": "f3419990-9b47-11ee-a4af-d7e956654f38.png",
+                    "movingProfile": null
+                },
+                "seasonStats": [
+                    {
+                        "playerID": "9c842985-9f09-4bd0-aa6a-dafe523b40ee",
+                        "season": 2024,
+                        "ranking": 27,
+                        "matchesPlayed": 57,
+                        "matchesWon": 33,
+                        "tournamentsWon": 0,
+                        "pointsScored": 19832,
+                        "avgShotTime": 28.1,
+                        "fiftyPlusBreaks": 104,
+                        "hundredPlusBreaks": 23,
+                        "maxBreaks": 0,
+                        "highestBreak": 140
+                    },
+                    {
+                        "playerID": "9c842985-9f09-4bd0-aa6a-dafe523b40ee",
+                        "season": 2023,
+                        "ranking": 27,
+                        "matchesPlayed": 50,
+                        "matchesWon": 26,
+                        "tournamentsWon": 0,
+                        "pointsScored": 16614,
+                        "avgShotTime": 26.1,
+                        "fiftyPlusBreaks": 79,
+                        "hundredPlusBreaks": 15,
+                        "maxBreaks": 0,
+                        "highestBreak": 141
+                    }
+                ]
+            },
+            "tournament": {
+                "tournamentID": "de7dda21-f1be-4073-a726-72e2167a0bea",
+                "name": "Halo World Championship 2025",
+                "season": 2024,
+                "startDate": "2025-04-19",
+                "endDate": "2025-05-05",
+                "customStartDate": null,
+                "customEndDate": null,
+                "venue": null,
+                "city": "Sheffield",
+                "country": "England",
+                "continent": "Europe",
+                "ticketingLink": "/tickets/world-championship-2025-tickets",
+                "tournamentListingImage": "e09873f0-0995-11f0-8d7d-159f9d4bf08d.png",
+                "winner": null,
+                "tournamentLogo": null,
+                "tournamentLogoDark": null,
+                "tournamentBackgroundOverride": null,
+                "informationPage": "/worldchampionship",
+                "published": true,
+                "drawContentType": "json"
+            },
+            "history": {
+                "matchID": "b2e38dfe-9eb7-488e-9022-1ca98f27536c",
+                "playerData": null,
+                "matchData": {
+                    "index": 0,
+                    "match": {
+                        "id": "b2e38dfe-9eb7-488e-9022-1ca98f27536c"
+                    },
+                    "status": "Live",
+                    "matchId": "b2e38dfe-9eb7-488e-9022-1ca98f27536c",
+                    "clockTime": "17:29",
+                    "homePlayer": true,
+                    "statusMeta": "FRAME_HAS_ENDED",
+                    "currentBreak": 111,
+                    "matchHistory": {
+                        "frames": [
+                            {
+                                "frameNumber": 1,
+                                "awayPlayerPoints": 73,
+                                "homePlayerPoints": 41,
+                                "awayPlayerFiftyPlusBreaks": 0,
+                                "homePlayerFiftyPlusBreaks": 0
+                            },
+                            {
+                                "frameNumber": 2,
+                                "awayPlayerPoints": 12,
+                                "homePlayerPoints": 98,
+                                "awayPlayerFiftyPlusBreaks": 0,
+                                "homePlayerFiftyPlusBreaks": 68
+                            },
+                            {
+                                "frameNumber": 3,
+                                "awayPlayerPoints": 17,
+                                "homePlayerPoints": 67,
+                                "awayPlayerFiftyPlusBreaks": 0,
+                                "homePlayerFiftyPlusBreaks": 0
+                            },
+                            {
+                                "frameNumber": 4,
+                                "awayPlayerPoints": 49,
+                                "homePlayerPoints": 77,
+                                "awayPlayerFiftyPlusBreaks": 0,
+                                "homePlayerFiftyPlusBreaks": 0
+                            },
+                            {
+                                "frameNumber": 5,
+                                "awayPlayerPoints": 96,
+                                "homePlayerPoints": 0,
+                                "awayPlayerFiftyPlusBreaks": 71,
+                                "homePlayerFiftyPlusBreaks": 0
+                            },
+                            {
+                                "frameNumber": 6,
+                                "awayPlayerPoints": 67,
+                                "homePlayerPoints": 16,
+                                "awayPlayerFiftyPlusBreaks": 0,
+                                "homePlayerFiftyPlusBreaks": 0
+                            },
+                            {
+                                "frameNumber": 7,
+                                "awayPlayerPoints": 14,
+                                "homePlayerPoints": 100,
+                                "awayPlayerFiftyPlusBreaks": 0,
+                                "homePlayerFiftyPlusBreaks": 84
+                            },
+                            {
+                                "frameNumber": 8,
+                                "awayPlayerPoints": 0,
+                                "homePlayerPoints": 90,
+                                "awayPlayerFiftyPlusBreaks": 0,
+                                "homePlayerFiftyPlusBreaks": 84
+                            },
+                            {
+                                "frameNumber": 9,
+                                "awayPlayerPoints": 130,
+                                "homePlayerPoints": 0,
+                                "awayPlayerFiftyPlusBreaks": 111,
+                                "homePlayerFiftyPlusBreaks": 0
+                            }
+                        ]
+                    },
+                    "ballsRemaining": {
+                        "red": 0,
+                        "blue": 0,
+                        "pink": 0,
+                        "black": 0,
+                        "brown": 0,
+                        "green": 0,
+                        "yellow": 0,
+                        "possiblePoints": 0
+                    },
+                    "sequenceNumber": 474,
+                    "awayPlayerFrames": 4,
+                    "homePlayerFrames": 5,
+                    "currentFrameStartTime": "2025-04-23T09:09:24",
+                    "matchPlayerStatistics": {
+                        "players": [
+                            {
+                                "index": 0,
+                                "potRate": 63,
+                                "homePlayer": true,
+                                "shotsTaken": 219,
+                                "timeOnTable": 50,
+                                "totalPoints": 489,
+                                "highestBreak": 84,
+                                "averageShotTime": "31.1s",
+                                "fiftyPlusBreaks": 3,
+                                "hundredPlusBreaks": 0
+                            },
+                            {
+                                "index": 1,
+                                "potRate": 61,
+                                "homePlayer": false,
+                                "shotsTaken": 209,
+                                "timeOnTable": 50,
+                                "totalPoints": 458,
+                                "highestBreak": 111,
+                                "averageShotTime": "29.0s",
+                                "fiftyPlusBreaks": 1,
+                                "hundredPlusBreaks": 1
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
