@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
 use App\Dtos\Player;
@@ -9,7 +11,7 @@ use LaravelZero\Framework\Commands\Command;
 
 use function Laravel\Prompts\multiselect;
 
-class FavouritePlayerCommand extends Command
+final class FavouritePlayerCommand extends Command
 {
     /**
      * The name and signature of the console command.

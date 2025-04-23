@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Factories;
 
 use App\Dtos\MatchPlayer;
@@ -17,7 +19,7 @@ final readonly class TournamentFactory
         $tournament = $response->json('data.attributes');
 
         $matches = collect($tournament['matches'])->map(function (array $match) {
-            if (!$match['playersAllocated']) {
+            if (! $match['playersAllocated']) {
                 return false;
             }
 
@@ -57,15 +59,15 @@ final readonly class TournamentFactory
             ->merge($suspendedMatches)
             ->merge($scheduledMatches)
             ->sortBy([
-                    ['start', 'asc'],
-                    function (SnookerMatch $match) {
-                        return match ($match->round) {
-                            'Final' => 100,
-                            'Semi-final' => 90,
-                            'Quarter-final' => 80,
-                            default => Str::substr($match->round, -1),
-                        };
-                    }
+                ['start', 'asc'],
+                function (SnookerMatch $match) {
+                    return match ($match->round) {
+                        'Final' => 100,
+                        'Semi-final' => 90,
+                        'Quarter-final' => 80,
+                        default => Str::substr($match->round, -1),
+                    };
+                },
             ])
             ->groupBy('round');
 

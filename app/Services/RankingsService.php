@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Dtos\Rankings;
 use App\Factories\RankingsFactory;
 use Illuminate\Support\Facades\Http;
 
-class RankingsService
+final class RankingsService
 {
     public function __construct(private RankingsFactory $rankingsFactory) {}
 

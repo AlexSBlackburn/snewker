@@ -19,3 +19,4 @@ The matches command will fetch the latest matches every minute until cancelled.
 
 ## To do
 - Fix order of rounds (Round 1, Round 2, Quarter Finals, Semi Finals, Final).
+- Write tests

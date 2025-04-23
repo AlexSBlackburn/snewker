@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
 use App\Dtos\SnookerMatch;
@@ -7,6 +9,7 @@ use App\Enums\MatchStatus;
 use App\Services\MatchService;
 use App\Services\NotificationService;
 use App\Services\TournamentService;
+use Exception;
 use Illuminate\Support\Collection;
 use LaravelZero\Framework\Commands\Command;
 
@@ -14,7 +17,7 @@ use function Laravel\Prompts\clear;
 use function Laravel\Prompts\spin;
 use function Laravel\Prompts\table;
 
-class MatchesCommand extends Command
+final class MatchesCommand extends Command
 {
     /**
      * The signature of the command.
@@ -40,15 +43,16 @@ class MatchesCommand extends Command
             $this->newLine(2);
 
             try {
-                $tournament = spin(message: 'Fetching matches...', callback: fn() => $tournamentService->getTournament());
-            } catch (\Exception $e) {
+                $tournament = spin(message: 'Fetching matches...', callback: fn () => $tournamentService->getTournament());
+            } catch (Exception $e) {
                 $this->info($e->getMessage());
+
                 return Command::FAILURE;
             }
 
             $this->info($tournament->name);
             $this->newLine();
-            $this->info($tournament->startDate->format('D d M Y') . ' - ' . $tournament->endDate->format('D d M Y'));
+            $this->info($tournament->startDate->format('D d M Y').' - '.$tournament->endDate->format('D d M Y'));
             $this->newLine();
             $this->info($tournament->location);
             $this->newLine();
@@ -69,11 +73,11 @@ class MatchesCommand extends Command
 
                         return [
                             $status,
-                            $match->playerOne->name . ' (' . $match->playerOne->nationality . ')',
+                            $match->playerOne->name.' ('.$match->playerOne->nationality.')',
                             $match->playerOne->score,
-                            $match->playerOne->frames . ' (' . $match->frames . ') ' . $match->playerTwo->frames,
+                            $match->playerOne->frames.' ('.$match->frames.') '.$match->playerTwo->frames,
                             $match->playerTwo->score,
-                            $match->playerTwo->name . ' (' . $match->playerTwo->nationality . ')',
+                            $match->playerTwo->name.' ('.$match->playerTwo->nationality.')',
                         ];
                     })->toArray()
                 );
@@ -91,7 +95,7 @@ class MatchesCommand extends Command
             });
 
             $this->newLine();
-            $this->info('Last fetched: ' . now()->timezone('Europe/Amsterdam')->format('H:i:s'));
+            $this->info('Last fetched: '.now()->timezone('Europe/Amsterdam')->format('H:i:s'));
             sleep(60);
         }
     }
