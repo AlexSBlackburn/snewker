@@ -18,7 +18,7 @@ final readonly class TournamentFactory
     {
         $tournament = $response->json('data.attributes');
 
-        $matches = collect($tournament['matches'])->map(function (array $match) {
+        $matches = collect($tournament['matches'])->map(function (array $match) use ($tournament) {
             if (! $match['playersAllocated']) {
                 return false;
             }
@@ -38,7 +38,7 @@ final readonly class TournamentFactory
 
             return new SnookerMatch(
                 id: $match['matchID'],
-                tournament: $match['name'],
+                tournament: $tournament['name'],
                 name: $match['name'],
                 round: $match['round'],
                 status: MatchStatus::from($match['status']),
